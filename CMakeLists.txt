@@ -10,3 +10,8 @@ set(SOURCES src/Maestro.cpp)
 add_library(CppMaestro STATIC ${SOURCES})
 
 target_link_libraries(CppMaestro ${LIBRARIES})
+
+# For testing
+enable_testing()
+
+add_subdirectory(test)

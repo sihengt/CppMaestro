@@ -1,13 +1,13 @@
-#include "Maestro/Maestro.hpp"
+#include "CppMaestro/CppMaestro.hpp"
 
-Maestro::Maestro(const std::string& port, unsigned int baud_rate = 9600, unsigned char device_number = 0x0c) 
+CppMaestro::CppMaestro(const std::string& port, unsigned int baud_rate = 9600, unsigned char device_number = 0x0c) 
     : serial(io, port)
 {
     serial.set_option(boost::asio::serial_port_base::baud_rate(baud_rate));
     pololu_cmd = {0xaa, device_number};
 }
 
-void Maestro::setTarget(unsigned char channel, unsigned short target)
+void CppMaestro::setTarget(unsigned char channel, unsigned short target)
 {
     // TODO: min / max clamps
     unsigned char lsb = target & 0x7f;
@@ -16,7 +16,7 @@ void Maestro::setTarget(unsigned char channel, unsigned short target)
     sendCommand(command);
 }
 
-void Maestro::setSpeed(unsigned char channel, unsigned short speed)
+void CppMaestro::setSpeed(unsigned char channel, unsigned short speed)
 {
     // TODO: min / max clamps
     unsigned char lsb = target & 0x7f;
@@ -25,7 +25,7 @@ void Maestro::setSpeed(unsigned char channel, unsigned short speed)
     sendCommand(command);
 }
 
-void Maestro::setAccel(unsigned char channel, unsigned short accel)
+void CppMaestro::setAccel(unsigned char channel, unsigned short accel)
 {
     // TODO: min / max clamps
     unsigned char lsb = target & 0x7f;
@@ -34,7 +34,7 @@ void Maestro::setAccel(unsigned char channel, unsigned short accel)
     sendCommand(command);
 }
 
-void Maestro::sendCommand(const std::vector<unsigned char>& command)
+void CppMaestro::sendCommand(const std::vector<unsigned char>& command)
 {
     std::vector<unsigned char> full_command = pololu_cmd;
     full_command.insert(full_command.end(), command.begin(), command.end());
