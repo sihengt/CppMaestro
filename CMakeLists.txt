@@ -5,7 +5,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 
 include_directories(include ${Boost_INCLUDE_DIRS})
 
-set(SOURCES src/Maestro.cpp)
+set(SOURCES src/CppMaestro.cpp)
 
 add_library(CppMaestro STATIC ${SOURCES})
 
