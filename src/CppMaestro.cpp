@@ -50,7 +50,7 @@ bool CppMaestro::isConnected()
     try
     {
         unsigned char buffer[1];
-        boost::asio::read(serial, boost::asio::buffer(buffer, 1), boost:asio::transfer_at_least(1));
+        boost::asio::read(serial, boost::asio::buffer(buffer, 1), boost::asio::transfer_at_least(1));
         return true;
     } catch (boost::system::system_error& e)
     {
