@@ -10,6 +10,7 @@ public:
     void setTarget(unsigned char channel, unsigned short target);
     void setSpeed(unsigned char channel, unsigned short speed);
     void setAccel(unsigned char channel, unsigned short accel);
+    unsigned short getPosition(unsigned char channel);
     bool isConnected();
 
 private:

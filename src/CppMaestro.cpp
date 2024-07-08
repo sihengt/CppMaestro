@@ -41,6 +41,18 @@ void CppMaestro::sendCommand(const std::vector<unsigned char>& command)
     boost::asio::write(serial, boost::asio::buffer(full_command));
 }
 
+void CppMaestro::getPosition(unsigned char channel)
+{
+    std::vector<unsigned char> command = {0x10, channel};
+    sendCommand(command);
+
+    unsigned char response[2];
+    boost::asio::read(serial, boost::asio::buffer(response, 2));
+    unsigned short position = response[0] + 256 * response[1];
+
+    return position;
+}
+
 bool CppMaestro::isConnected()
 {
     if (!serial.is_open()) {
